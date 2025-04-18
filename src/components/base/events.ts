@@ -33,6 +33,7 @@ export class EventEmitter implements IEvents {
             this._events.set(eventName, new Set<Subscriber>());
         }
         this._events.get(eventName)?.add(callback);
+        
     }
 
     /**
