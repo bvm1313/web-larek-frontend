@@ -17,7 +17,7 @@ export class Modal extends Component<IModalData> {
         this._closeButton = ensureElement<HTMLButtonElement>('.modal__close', container);
         this._content = ensureElement<HTMLElement>('.modal__content', container);
 
-        this._closeButton.addEventListener('click', this.close.bind(this)); 
+        this._closeButton.addEventListener('click', () => events.emit('modal:close'));
         this.container.addEventListener('click', this.close.bind(this)); 
         this.handleEscUp = this.handleEscUp.bind(this); 
         
@@ -25,19 +25,18 @@ export class Modal extends Component<IModalData> {
     }
 
     set content(value: HTMLElement) {
-        this._content.replaceChildren(value); 
+        this._content.replaceChildren(value);
     }
 
     open() {
         this.scrollPosition = window.scrollY; 
-        this.container.classList.add('modal_active');
+        this.toggleClass(this.container, 'modal_active');        
         document.addEventListener('keyup', this.handleEscUp); 
         this.events.emit('modal:open');
-
     }
 
     close() {
-        this.container.classList.remove('modal_active'); 
+        this.toggleClass(this.container, 'modal_active');
         document.removeEventListener('keyup', this.handleEscUp); 
         this.content = null;
         this.events.emit('modal:close'); 

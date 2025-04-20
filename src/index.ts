@@ -63,7 +63,7 @@ events.on('lot:selected', (lot: ILotItem) => {
     });
 
     if (lot.price === null) {
-        productpreview.disableButton(); // Отключаем кнопку, если цена null
+        productpreview.disableButton(); 
     } else {
         productpreview.buttonChange = basketData.checkBasket(lot.id) ? 'Убрать' : 'Купить';
     }
@@ -94,6 +94,7 @@ events.on('basket:open', () => {
 events.on('basket:delete', (item: TBasket) => {
     basketData.deleteLotBasket(item.id);
     page.counter = basketData.getCountLotsBasket();
+    modal.open();
     modal.render({
         content: basket.render({
             items: renderBasketItems(), 
@@ -117,6 +118,7 @@ events.on(/^order\..*:change/, (data: { field: keyof TUserInfoAddressPayment, va
 });
 
 events.on('addressPayment:open', () => {
+    modal.open();
     modal.render({
         content: addressPayment.render({
             payment: '',
@@ -142,6 +144,7 @@ events.on(/^contacts\..*:change/, (data: { field: keyof TUserInfoEmailPhone, val
 });
 
 events.on('emailPhone:open', () => {
+    modal.open();
     modal.render({
         content: contacts.render({
             phone: '',
@@ -162,6 +165,7 @@ events.on('contacts:submit', () => {
         items: basketData.getLotsBasket(),
     })
     .then((res) => {
+        modal.open()
         modal.render({
             content: success.render({
               total: res.total

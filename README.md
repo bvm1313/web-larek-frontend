@@ -224,7 +224,7 @@ export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
 #### Класс Modal
 Наследует функциональность от Component и реализует модальное окно. Так же предоставляет методы `open` и `close` для управления отображением модального окна. Устанавливает слушатели на клавиатуру, для закрытия модального окна по Esc, на клик в оверлей и кнопку-крестик для закрытия попапа. 
 
-`constructor(container: HTMLElement, protected events: IEvents);` конструктор принимает HTMLElement, по которому в разметке страницы будет идентифицирова нужный темплейт b события.
+`constructor(container: HTMLElement, protected events: IEvents);` конструктор принимает HTMLElement, по которому в разметке страницы будет идентифицирова нужный темплейт события.
 
 Поля класса:
 - `_closeButton: HTMLButtonElement;` кнопка закрытия модального окна;
@@ -308,12 +308,15 @@ export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
 `constructor(container: HTMLElement);` в конструктор класса передается DOM элемент темплейта, что позволяет при необходимости формировать карточки разных вариантов верстки.
 
 Поля:
-`_title: HTMLElement;` заголовок товара;
-`_price: HTMLElement;` цена товара;
+- `_title: HTMLElement;` заголовок товара;
+- `_price: HTMLElement;` цена товара;
+- `_category?: HTMLElement;` категория товара;
+- `ProductCategoryType: Record<string, string>` объект категорий товаров;
 
 Методы:
 - `set title(value: string);` cеттер для установки заголовка товара;
 - `set price(value: number | null);` cеттер для установки текста цены товара;
+- `set category: HTMLElement;` сеттер для установки категории товара;
 
 Классы `CardBasket, CardList, CardPreview`  наследуется от базового класса `Card` и представляют товар, который находится в разных формах интернет-магазина. 
 - `constructor(container: HTMLElement, actions?: ILotActions)`

@@ -30,11 +30,10 @@ export class Basket extends Component<IBasket> {
     }
 
     set items(items: HTMLElement[]) {
+        this.setDisabled(this._button, !items.length);
         if (items.length) {
             this._list.replaceChildren(...items); 
-            this._button.removeAttribute('disabled'); 
         } else {
-            this._button.setAttribute('disabled', 'disabled');
             this._list.replaceChildren(
                 createElement<HTMLParagraphElement>('p', { 
                     textContent: 'В корзине нет товаров'
