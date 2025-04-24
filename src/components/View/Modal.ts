@@ -28,15 +28,16 @@ export class Modal extends Component<IModalData> {
         this._content.replaceChildren(value);
     }
 
+ 
     open() {
         this.scrollPosition = window.scrollY; 
-        this.toggleClass(this.container, 'modal_active');        
+        this.setClass(this.container, 'modal_active');        
         document.addEventListener('keyup', this.handleEscUp); 
         this.events.emit('modal:open');
     }
 
     close() {
-        this.toggleClass(this.container, 'modal_active');
+        this.removeClass(this.container, 'modal_active');
         document.removeEventListener('keyup', this.handleEscUp); 
         this.content = null;
         this.events.emit('modal:close'); 

@@ -168,6 +168,8 @@ export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
 - `setVisible(element: HTMLElement);` показать;
 - `setImage(element: HTMLImageElement, src: string, alt?: string);` установить изображение с алтернативным текстом;
 - `render(data?: Partial<T>): HTMLElement;` вернуть корневой DOM-элемент;
+- `setClass(element: HTMLElement, className: string);` добавить класс элементу;
+- `removeClass(element: HTMLElement, className: string);`  удалить класс у элемента; 
 
 ### Слой данных
 
